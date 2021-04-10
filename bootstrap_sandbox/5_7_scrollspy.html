@@ -92,7 +92,7 @@
 
   <div class="container">
     <!--#################START HERE#####################-->
-    <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light mb-3">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light mb-3" id="main-nav">
       <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
         <ul class="navbar-nav">
@@ -109,7 +109,7 @@
       </div>
     </nav>
 
-    <section>
+    <section id="welcome">
       <h3>Welcome</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, reiciendis ullam sit libero recusandae obcaecati modi,
         iusto facere, distinctio corporis in officiis quidem vel veniam eum fugit quibusdam. Repellat quod explicabo repudiandae,
@@ -139,7 +139,7 @@
         ut, quidem cum architecto.</p>
     </section>
 
-    <section>
+    <section id="about">
       <h3>About</h3>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam nesciunt nemo iure at, ab cupiditate consequuntur nobis hic
       odit, animi, quos ipsum tempore consectetur vel molestias quasi a ea dolore harum aut eligendi repellat? Harum aperiam
@@ -175,7 +175,7 @@
       Ratione perferendis commodi ullam!
     </section>
 
-    <section>
+    <section id="services">
       <h3>Services</h3>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente laudantium reiciendis nostrum impedit voluptatum
         repudiandae dicta deserunt praesentium eveniet assumenda, laboriosam facere. Omnis et, deleniti magnam dolorem porro
@@ -211,6 +211,7 @@
   <div style="margin-top:500px;"></div>
 
   <!-- DO NOT USE SLIM VERSION OF JQUERY -->
+    <!-- THE SLIM VERSION OF JQUERY DOES NOT INCLUDE THE ANIMATE METHOD -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -218,7 +219,27 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
   <script>
+    $('body').scrollspy({ target: '#main-nav' });
 
+    // Add smooth scrolling
+    $('#main-nav a').on('click', function (e) {
+      // Check for a hash value
+      if (this.hash !== '') {
+        // Prevent default behavior
+        e.preventDefault();
+
+        // Store hash
+        const hash = this.hash;
+
+        // Animate smooth scroll
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 900, function () {
+          // Add hash to URL after scroll
+          window.location.hash = hash;
+        });
+      }
+    });
   </script>
 </body>
 
